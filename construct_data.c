@@ -1,10 +1,10 @@
 #include "construct_data.h"
-/*      ¸Ãconstruct_data.cÍê³ÉÒÔÏÂ¼¸¸ö¹¦ÄÜ£º£¨1£©Ttft_tbl* makeup_tft_tbl_data() Íê³ÉÓ³Éä±íµÄÄÚ´æ³õÊ¼»¯·ÖÅäºÍÓ³Éä±íÖĞÖµµÄ³õÊ¼»¯£¬·µ»ØÒ»¸öÓ³Éä±íÄÚµÚÒ»¸ö×Ó±íµÄµØÖ·£¬·µ»ØÖ¸ÕëÀàĞÍTtft_tbl* £»          */  
-/*                                        £¨2£©int free_tft_tbl_data(Ttft_tbl* tft_tbl_ptr) ½«ÓÃÓÚ´æ·ÅÓ³Éä±íµÄÄÚ´æfreeµô£¬×¢ÒâÏÈfreeµô£¨×Ó£©Ö¸Õë£¬ÔÙfreeµôÍâ²¿µÄÖ¸Õë£¨·µ»Ø0£©              */
-/*                                        £¨3£©ÉùÃ÷Èô¸É¸öÓÃÓÚµ÷ÓÃµÄ×Óº¯Êı£¬ÕâĞ©×Óº¯ÊıÖ÷ÒªÍê³ÉIP°üÍ·ÖĞ¹Ø¼ü×ÖµÄ¸³Öµ  £¨ÕâĞ©×Óº¯ÊıÎŞ·µ»ØÖµ£¬¶¼ÊÇÔÚÀûÓÃÖ¸ÕëÔÚ¸øÄÚ´æ¿Õ¼ä¸³Öµ£©              */
-/*                                        £¨4£©Tpdu_data_req* makeup_pdu_data()Íê³É4¸öÊı¾İ°üµÄµØÖ·¿Õ¼äµÄ·ÖÅäºÍÆäÖĞ¸÷¸öÄÚ´æ±äÁ¿µÄ¸³Öµ£¬·µ»ØÒ»¸öTpdu_data_req* pdu_data_ptrÀàĞÍµÄÖ¸Õë     */
-/*                                         (5) int free_pdu_data(Tpdu_data_req* pdu_data_ptr) ÀûÓÃ´«ÈëµÄTpdu_data_req* pdu_data_ptrÖ¸Õë½«ÓÃÓÚ´æ·ÅÊı¾İ°üµÄÄÚ´æfreeµô£¨·µ»Ø0£©     */
-/*                                        £¨6£©Osa_status check_result(Tpdu_data_req* pdu_data_ptr, Uint8* expect_result)ÓÃÀ´¶Ô±È°üÖĞµÄrb_idÊÇ·ñµÈÓÚexpect_result*/
+/*      è¯¥construct_data.cå®Œæˆä»¥ä¸‹å‡ ä¸ªåŠŸèƒ½ï¼šï¼ˆ1ï¼‰Ttft_tbl* makeup_tft_tbl_data() å®Œæˆæ˜ å°„è¡¨çš„å†…å­˜åˆå§‹åŒ–åˆ†é…å’Œæ˜ å°„è¡¨ä¸­å€¼çš„åˆå§‹åŒ–ï¼Œè¿”å›ä¸€ä¸ªæ˜ å°„è¡¨å†…ç¬¬ä¸€ä¸ªå­è¡¨çš„åœ°å€ï¼Œè¿”å›æŒ‡é’ˆç±»å‹Ttft_tbl* ï¼›          */  
+/*                                        ï¼ˆ2ï¼‰int free_tft_tbl_data(Ttft_tbl* tft_tbl_ptr) å°†ç”¨äºå­˜æ”¾æ˜ å°„è¡¨çš„å†…å­˜freeæ‰ï¼Œæ³¨æ„å…ˆfreeæ‰ï¼ˆå­ï¼‰æŒ‡é’ˆï¼Œå†freeæ‰å¤–éƒ¨çš„æŒ‡é’ˆï¼ˆè¿”å›0ï¼‰              */
+/*                                        ï¼ˆ3ï¼‰å£°æ˜è‹¥å¹²ä¸ªç”¨äºè°ƒç”¨çš„å­å‡½æ•°ï¼Œè¿™äº›å­å‡½æ•°ä¸»è¦å®ŒæˆIPåŒ…å¤´ä¸­å…³é”®å­—çš„èµ‹å€¼  ï¼ˆè¿™äº›å­å‡½æ•°æ— è¿”å›å€¼ï¼Œéƒ½æ˜¯åœ¨åˆ©ç”¨æŒ‡é’ˆåœ¨ç»™å†…å­˜ç©ºé—´èµ‹å€¼ï¼‰              */
+/*                                        ï¼ˆ4ï¼‰Tpdu_data_req* makeup_pdu_data()å®Œæˆ4ä¸ªæ•°æ®åŒ…çš„åœ°å€ç©ºé—´çš„åˆ†é…å’Œå…¶ä¸­å„ä¸ªå†…å­˜å˜é‡çš„èµ‹å€¼ï¼Œè¿”å›ä¸€ä¸ªTpdu_data_req* pdu_data_ptrç±»å‹çš„æŒ‡é’ˆ     */
+/*                                         (5) int free_pdu_data(Tpdu_data_req* pdu_data_ptr) åˆ©ç”¨ä¼ å…¥çš„Tpdu_data_req* pdu_data_ptræŒ‡é’ˆå°†ç”¨äºå­˜æ”¾æ•°æ®åŒ…çš„å†…å­˜freeæ‰ï¼ˆè¿”å›0ï¼‰     */
+/*                                        ï¼ˆ6ï¼‰Osa_status check_result(Tpdu_data_req* pdu_data_ptr, Uint8* expect_result)ç”¨æ¥å¯¹æ¯”åŒ…ä¸­çš„rb_idæ˜¯å¦ç­‰äºexpect_result*/
 
 Ttft_tbl* makeup_tft_tbl_data()
 {
